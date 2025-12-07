@@ -1,4 +1,4 @@
-function create_soldjer(type,rank){
+export function createCharacter(type,rank){
     return{
      rank:rank,
      type:type,
