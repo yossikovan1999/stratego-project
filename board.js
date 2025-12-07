@@ -19,4 +19,4 @@ function printBoard(board){
    }
    return str
 }
-console.log(printBoard([["",{},""]]));
+
