@@ -1,3 +1,5 @@
+import readLineSync from 'readline-sync'
+
 function create_soldjer(type,rank,player){
     return{
      player:player,
@@ -7,25 +9,11 @@ function create_soldjer(type,rank,player){
     }
 }
 
-function printBoard(board){
-    let str = ""
-   for (let r of board){
-    str+="["
-    for (let c of r){
-       if (typeof c != 'object'){
-        str+="_"
-       }else{
-        if (c.player === "player"){
-            str+="O"
-        }else{
-            str+="X"
-        }
-       }
-       str+=" "
-    }
-    str+="]\n"
-   }
-   return str
+function seeWolking(board,soldjer){
+     
 }
+
+let t = readLineSync.question()
+console.log(t);
 
 
