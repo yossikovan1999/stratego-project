@@ -43,6 +43,7 @@ function resoltComparison(board, attacker, attacked, resolt) {
         } else if (resolt === "TIE") {
             board[attacked.location.x][attacked.location.y] = "_"
             board[attacker.location.x][attacker.location.y] = "_"
+            console.log(resolt);
         }
     }
 }

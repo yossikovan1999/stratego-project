@@ -13,12 +13,13 @@ function createSoldiersplayer2(board) {
           console.log(`type ${s.type} rank ${s.rank}`)
           let row = readLineSync.question("wich row 0-3: ")
           let col = readLineSync.question("wich col: ")
-          if (row != 0 && row != 1 && row != 2 && row != 3){
+       
+          if (row != 0 && row != 1 && row != 2 && row != 3 || typeof board[row][col] === 'object'){
             continue
           }
           board[row][col] = s
-          s.location.x = row
-          s.location.y = col
+          s.location.x = Number(row)
+          s.location.y = Number(col)
           break
         }
     })
@@ -45,4 +46,6 @@ function createSoldiersAI2(board){
         }
     })
 }
+
+export {createSoldiersAI2,createSoldiersplayer2}
 
