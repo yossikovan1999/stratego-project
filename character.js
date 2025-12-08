@@ -36,5 +36,4 @@ function compareCharacters(attacker, attacked){
 }
 
 
-let t = readLineSync.question();
-console.log(t);
+

@@ -31,3 +31,4 @@ function seeWolking(board, soldjer) {
   }
 
 }
+
