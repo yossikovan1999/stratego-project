@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //==========================================
 //           compare characters
 //==========================================
@@ -21,7 +21,6 @@ function compareCharacters(attacker, attacked){
     return "TIE";
   }
 }
-=======
 function resoltComparison(board, attacker, attacked, resolt) {
     if (resolt === "GAME_OVER") {
         let tmp = [attacker.x, attacker.y]
@@ -48,31 +47,3 @@ function resoltComparison(board, attacker, attacked, resolt) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//      }else if(resolt === "ATTACKER_WON"){
-//         for (let i = onabort;i<board.length;i++){
-//             for (let j = 0;j<board[i].length;j++){
-//                 if (board[i][j] === attacked){
-//                     board[i][j] = attacker
-//                     console.log(resolt)
-//                 }
-//             }
-//         }
-//      }else if(resolt === "ATTACKED_WON"){
-
-//      }
-// }
->>>>>>> c20593be086eb956565c56f88c0a509d0bef1971

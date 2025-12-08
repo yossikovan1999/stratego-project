@@ -1,16 +1,13 @@
 import readLineSync from "readline-sync";
 
-function createSoldier(type, rank, player) {
+function createSoldier(type, rank, player, x = undefined, y = undefined) {
   return {
     player: player,
     rank: rank,
     type: type,
-    location: { x: undefined, y: undefined },
+    location: { x: x, y: y},
   };
 }
 
 
-
-
-let t = readLineSync.question();
-console.log(t);
+export default createSoldier
