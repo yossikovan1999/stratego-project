@@ -1,36 +1,39 @@
-import {DIRECTION, MAX_COLS, MAX_ROWS} from ".././consts.js";
-import {getUserInput, printValidMoves} from ".././io.js";
+import { DIRECTION, MAX_COLS, MAX_ROWS } from ".././consts.js";
+import { getUserInput, printValidMoves } from ".././io.js";
 import { updateBoard } from "../board/boardFunctions.js";
 import board from "../board/board.js";
-
 
 /**
  * @character - this is the character object.
  * @move - this is the movement array.
- * this function will check if the move that the 
+ * this function will check if the move that the
  * player chooses is a valid move.
  */
-function validMove(character, move){
-  
+function validMove(character, move) {
   //check valid column move
-  if(character.location.x + move[0] > MAX_COLS || character.location.x + move[0] < 0){
+  if (
+    character.location.x + move[0] > MAX_COLS ||
+    character.location.x + move[0] < 0
+  ) {
     return false;
   }
-  
+
   //check valid row move.
-  if(character.location.y + move[1] > MAX_ROWS || character.location.y + move[1] < 0){
+  if (
+    character.location.y + move[1] > MAX_ROWS ||
+    character.location.y + move[1] < 0
+  ) {
     return false;
   }
-  
+
   /*this will check if it there is a object in the cell the player
   wants to move to and if there is will return false if it is not 
   the same player and true if it is.*/
+  if(typeof board[character.location.x + move[0]][character.location.y + move[1]] === "object"){
 
-  // if(typeof board[character.location.x + move[0]][character.location.y + move[1]] === "object"){
-    
-  //   const moveToObject = board[character.location.x + move[0]][character.location.y + move[1]];
-  //   return moveToObject.player !== character.player;
-  // }
+    const moveToObject = board[character.location.x + move[0]][character.location.y + move[1]];
+    return moveToObject.player !== character.player;
+  }
 
   //move is valid.
   return true;
@@ -40,60 +43,55 @@ function validMove(character, move){
  * @charactr - character object.
  * this function will return a array of all the valid movements.
  */
-function getValidMoves(character){
-  
+function getValidMoves(character) {
   const validMovemets = [];
-  
-  for (const directionName in DIRECTION){
-    
-    console.log(directionName);
-    console.log(DIRECTION[directionName])
 
-    if (validMove(character, DIRECTION[directionName])){
-      validMovemets.push({direction : DIRECTION[directionName], name : directionName});
+  for (const directionName in DIRECTION) {
+    console.log(directionName);
+    console.log(DIRECTION[directionName]);
+
+    if (validMove(character, DIRECTION[directionName])) {
+      validMovemets.push({
+        direction: DIRECTION[directionName],
+        name: directionName,
+      });
     }
   }
-  
+
   return validMovemets;
-
-}
-
-function checkIsBattle(old,new){
-     
 }
 
 
 /**
- * @param character - this is the character object.
+ * @param {*} character - this is the character object.
  * this function is in charge of moving the soldier.
  */
-export function moveSoldier(character){
-    
-    const validMoves = getValidMoves(character);
+function moveSoldier(character) {
+  const validMoves = getValidMoves(character);
 
-    //this will print the valid available moves.
-    printValidMoves(validMoves);
+  //this will print the valid available moves.
+  printValidMoves(validMoves);
 
-    const userInput = getUserInput();
+  const userInput = getUserInput();
 
-    // if(checkIsBattle()){
-    //   //handle battle
-    // }else{
-      
-      //in the case that it is not a battle.
-      
-      const vector = validMoves[userInput].direction;
-      const prevPos = {row : character.location.x, col : character.location.y};
-      const curPos = {row : character.location.x + vector[0], col : character.location.y + vector[1]}
+  //this is the moving vector (values where to move).
+  const vector = validMoves[userInput].direction;
+  //this is the previous position
+  const prevPos = { row: character.location.x, col: character.location.y };
+  //this is the new position
+  const newPos = {
+    row: character.location.x + vector[0],
+    col: character.location.y + vector[1],
+  };
 
-      updateBoard(character, curPos, prevPos);
-    // }
+  // if (checkIsBattle(prevPos, newPos)) {
+  // } else {
+    updateBoard(character, newPos, prevPos);
+  // }
 }
 
-
-export function seeWolking(board, soldjer) {
+function seeWolking(board, soldjer) {
   
-  console.log(soldjer.location.x, soldjer.location.y)
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -126,7 +124,6 @@ export function seeWolking(board, soldjer) {
             }
         }
     }
-
 
 
 
