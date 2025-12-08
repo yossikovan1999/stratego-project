@@ -6,4 +6,4 @@ const MAX_COLS = 10;
 
 const EMPTY_CELL = "_"
 
-export { CHARACTER_NUMBERS, COLS, ROWS };
+export { CHARACTER_NUMBERS, MAX_COLS, MAX_ROWS, EMPTY_CELL };

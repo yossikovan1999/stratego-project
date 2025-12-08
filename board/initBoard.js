@@ -1,5 +1,4 @@
 import { createCharacter, createSoldjer } from "../character.js";
-import { CHARACTER_NUMBERS, COLS, EMPTY_CELL } from ".././consts.js";
 import board from "./board.js";
 
 
