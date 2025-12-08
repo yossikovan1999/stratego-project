@@ -61,24 +61,12 @@ function getValidMoves(character) {
   return validMovemets;
 }
 
-function checkIsBattle(old,new){
-     
-}
-
 
 /**
  * @param {*} character - this is the character object.
  * this function is in charge of moving the soldier.
  */
-export function moveSoldier(character){
-    
-    const validMoves = getValidMoves(character);
-
-    //this will print the valid available moves.
-    printValidMoves(validMoves);
-
-    const userInput = getUserInput();
-export function moveSoldier(character) {
+function moveSoldier(character) {
   const validMoves = getValidMoves(character);
 
   //this will print the valid available moves.
@@ -102,9 +90,8 @@ export function moveSoldier(character) {
   // }
 }
 
-export function seeWolking(board, soldjer) {
+function seeWolking(board, soldjer) {
   
-  console.log(soldjer.location.x, soldjer.location.y)
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
