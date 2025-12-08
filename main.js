@@ -16,11 +16,11 @@ function game() {
   seeWolking(board, soldier);
 }
 
-function main() {
-  console.log(printBoard(board));
-}
 const soldier = createSoldier("S", 3, "player", 9, 0);
 fillBoard([soldier]);
-main();
 
-main();
+console.log(printBoard(board));
+
+
+
+

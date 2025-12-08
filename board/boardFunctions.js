@@ -69,8 +69,12 @@ function createSoldiers(row, player) {
  * (updating the board).
  */
 function updateBoard(character, newPosition, prevPosition) {
+  
   board[newPosition.row][newPosition.col] = character;
   board[prevPosition.row][prevPosition.col] = EMPTY_CELL;
+
+  character.location.x = newPosition.row;
+  character.location.y = newPosition.col;
 }
 
 export { printBoard, updateBoard, createSoldiers };
