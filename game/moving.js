@@ -26,9 +26,9 @@ function validMove(character, move) {
     return false;
   }
 
-  /*this will check if it there is a object in the cell the player
-  wants to move to and if there is will return false if it is not 
-  the same player and true if it is.*/
+  /*check there is a object in the cell the player wants to move 
+  to and if there is will return false if it is not the same player 
+  and true if it is.*/
   if(typeof board[character.location.x + move[0]][character.location.y + move[1]] === "object"){
 
     const moveToObject = board[character.location.x + move[0]][character.location.y + move[1]];
@@ -84,7 +84,8 @@ function moveSoldier(character) {
     col: character.location.y + vector[1],
   };
 
-  // if (checkIsBattle(prevPos, newPos)) {
+  // if (checkIsBattle(board, newPos)) {
+  
   // } else {
     updateBoard(character, newPos, prevPos);
   // }
