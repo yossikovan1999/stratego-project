@@ -8,7 +8,7 @@ function compareCharacters(attacker, attacked){
    if(attacker.type === 'F'){
     throw new Error("Attacker cannot be a flag, internal game error!");
    }
-
+  console.log(`attacker: ${attacker.rank},attacked: ${attacked.rank}`);
   if(attacked.type === 'F'){
     return "GAME_OVER";
   }else if(attacker.rank === 1 && attacked.rank === 9){
