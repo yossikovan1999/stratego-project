@@ -1,5 +1,6 @@
-import {EMPTY_CELL, MAX_ROWS, MAX_COLS} from ".././consts.js";
+import {EMPTY_CELL, MAX_ROWS, MAX_COLS, CHARACTER_NUMBERS} from ".././consts.js";
 import board from "./board.js";
+import createSoldier from "../character.js";
 
 //==========================================
 //              print Board
@@ -27,6 +28,35 @@ function printBoard(board){
 }
 
 
+
+/**
+ * @returns this will return a random col on the board.
+ */
+function getRandomCol(){
+    
+    while(true){
+        let col = Math.floor(Math.random() * MAX_COLS);
+        
+        if(typeof board[0][col] != "object"){
+            return col;
+        }
+    }
+}
+
+/**
+ * 
+ */
+function createSoldiers(row){
+
+    for(const number of CHARACTER_NUMBERS){
+        let soldierType = number === 0 ? 'F' : 'S';
+        const col = getRandomCol()
+        const character = createSoldier(soldierType, number, "computer" , row, col);
+        board[row][col] = character;
+    }
+}
+
+
 /**
  * 
  * @param {*} character - this is the soldier on the board. 
@@ -35,11 +65,11 @@ function printBoard(board){
  * this function manages moving the soldier to a empty space. 
  * (updating the board)
  */
-function updateBoard(character, position, previousPosition){
+function updateBoard(character, position, prevPosition){
 
-    board[position.row][position.com] = character;
-    board[previousPosition.row][previousPosition.col] = EMPTY_CELL;
+    board[position.row][position.col] = character;
+    board[prevPosition.row][prevPosition.col] = EMPTY_CELL;
 }
 
 
-export {printBoard, updateBoard};
+export {printBoard, updateBoard, createSoldiers};
