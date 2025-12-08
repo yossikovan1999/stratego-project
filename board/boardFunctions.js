@@ -28,45 +28,49 @@ function printBoard(board){
 }
 
 
-
 /**
- * @returns this will return a random col on the board.
+ * get Random Col
  */
-function getRandomCol(){
+function getRandomCol(row){
     
     while(true){
         let col = Math.floor(Math.random() * MAX_COLS);
         
-        if(typeof board[0][col] != "object"){
+        if(typeof board[row][col] != "object"){
             return col;
         }
     }
 }
 
 /**
- * 
+ * this function gets the the row number and will fill the row with 
+ * soldiers.
  */
-function createSoldiers(row){
+function createSoldiers(row, player){
 
     for(const number of CHARACTER_NUMBERS){
-        let soldierType = number === 0 ? 'F' : 'S';
-        const col = getRandomCol()
-        const character = createSoldier(soldierType, number, "computer" , row, col);
+        
+        if(player != "computer"){
+            console.log(number)
+        }
+
+        const soldierType = number === 0 ? 'F' : 'S';
+        const col = getRandomCol(row)
+        const character = createSoldier(soldierType, number, player, row, col);
         board[row][col] = character;
     }
 }
 
-
 /**
- * 
  * @param {*} character - this is the soldier on the board. 
  * @param {*} position - new positon to update.
  * @param {*} previousPosition - old position to update to empty cell.
  * this function manages moving the soldier to a empty space. 
- * (updating the board)
+ * (updating the board).
  */
 function updateBoard(character, position, prevPosition){
-
+    
+    console.log("here");
     board[position.row][position.col] = character;
     board[prevPosition.row][prevPosition.col] = EMPTY_CELL;
 }
