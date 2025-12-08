@@ -1,3 +1,6 @@
+//==========================================
+//              print Board
+//==========================================
 function printBoard(board){
     let str = ""
    for (let r of board){
@@ -20,3 +23,5 @@ function printBoard(board){
    return str
 }
 
+
+export {printBoard};

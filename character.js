@@ -1,6 +1,6 @@
 import readLineSync from "readline-sync";
 
-function create_soldjer(type, rank, player) {
+function createSoldier(type, rank, player) {
   return {
     player: player,
     rank: rank,

@@ -3,6 +3,14 @@ import board from "./board.js";
 
 
 //==========================================
+//               create board
+//==========================================
+function createEmptyBoard(rows, cols) {
+  //creates a empty board.
+  return Array(rows).fill(Array(cols).fill(EMPTY_CELL));
+}
+
+//==========================================
 //             initPieces
 //==========================================
 function fillBoard(pieces){
@@ -12,3 +20,6 @@ function fillBoard(pieces){
   }); 
 
 }
+
+
+export {createEmptyBoard, fillBoard}
