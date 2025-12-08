@@ -128,12 +128,13 @@ function seeWolking(board, soldjer) {
           } else {
             console.log("in the up is avlable");
           }
-        }
+        }if (i<board.length-1){
         if (typeof board[i + 1][j] === "object") {
           console.log(`in the dwon have soldjer of ${board[i + 1][j].player}`);
         } else {
           console.log("in the down is avlable");
         }
+    }
       }
     }
   }
