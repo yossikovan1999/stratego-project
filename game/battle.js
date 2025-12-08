@@ -40,7 +40,7 @@ function resoltComparison(board, attacker, attacked, resolt) {
         } else if (resolt === "ATTACKED_WON") {
             board[attacker.x][attacker.y] = "_"
             console.log(resolt);
-        } else if (resolt === TIE) {
+        } else if (resolt === "TIE") {
             board[attacked.x][attacked.y] = "_"
             board[attacker.x][attacker.y] = "_"
         }
@@ -48,11 +48,9 @@ function resoltComparison(board, attacker, attacked, resolt) {
 }
 
 
-function checkIsBattle(board,new1){
-     if (typeof board[new1.row][new1.col] === 'object'){
-        return true
-     }
-     return false
+function checkIsBattle(board,newPos){
+    
+    return false
 }
 
 export {compareCharacters,resoltComparison,checkIsBattle}
