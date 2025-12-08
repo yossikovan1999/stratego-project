@@ -1,19 +1,15 @@
-import readLineSync from 'readline-sync'
+import readLineSync from "readline-sync";
 
-function create_soldjer(type,rank,player){
-    return{
-     player:player,
-     rank:rank,
-     type:type,
-     location:{x:undefined,y:undefined}
-    }
+function createSoldier(type, rank, player) {
+  return {
+    player: player,
+    rank: rank,
+    type: type,
+    location: { x: undefined, y: undefined },
+  };
 }
 
-function seeWolking(board,soldjer){
-     
-}
+function seeWolking(board, soldjer) {}
 
-let t = readLineSync.question()
+let t = readLineSync.question();
 console.log(t);
-
-
