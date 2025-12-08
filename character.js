@@ -9,7 +9,7 @@ function createSoldier(type, rank, player) {
   };
 }
 
-function seeWolking(board, soldjer) {}
+
 
 
 //==========================================
