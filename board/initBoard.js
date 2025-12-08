@@ -3,6 +3,8 @@ import { EMPTY_CELL } from "../consts.js";
 import board from "./board.js";
 
 
+
+
 //==========================================
 //               create board
 //==========================================
@@ -19,8 +21,6 @@ function fillBoard(pieces){
   pieces.forEach(element => {
     board[element.location.x][element.location.y] = element
   }); 
-
-
 }
 
 

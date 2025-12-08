@@ -1,6 +1,8 @@
-import {DIRECTION, MAX_COLS, MAX_COLS, MAX_ROWS} from ".././consts.js";
-import {getUserInput, printValidMoves, validMoves} from ".././io.js";
+import {DIRECTION, MAX_COLS, MAX_ROWS} from ".././consts.js";
+import {getUserInput, printValidMoves} from ".././io.js";
 import { updateBoard } from "../board/boardFunctions.js";
+import board from "../board/board.js";
+
 
 /**
  * @character - this is the character object.
@@ -11,15 +13,25 @@ import { updateBoard } from "../board/boardFunctions.js";
 function validMove(character, move){
   
   //check valid column move
-  if(character.x + move[0] > MAX_COLS || character.x + move[0] < 0){
+  if(character.location.x + move[0] > MAX_COLS || character.location.x + move[0] < 0){
     return false;
   }
   
   //check valid row move.
-  if(character.y + move[1] > MAX_ROWS || character.y + move[1] < 0){
+  if(character.location.y + move[1] > MAX_ROWS || character.location.y + move[1] < 0){
     return false;
   }
   
+  /*this will check if it there is a object in the cell the player
+  wants to move to and if there is will return false if it is not 
+  the same player and true if it is.*/
+
+  // if(typeof board[character.location.x + move[0]][character.location.y + move[1]] === "object"){
+    
+  //   const moveToObject = board[character.location.x + move[0]][character.location.y + move[1]];
+  //   return moveToObject.player !== character.player;
+  // }
+
   //move is valid.
   return true;
 }
@@ -34,8 +46,11 @@ function getValidMoves(character){
   
   for (const directionName in DIRECTION){
     
-    if (validMove(character, DIRECTION.directionName)){
-      validMovemets.push({direction : DIRECTION.directionName, name : directionName});
+    console.log(directionName);
+    console.log(DIRECTION[directionName])
+
+    if (validMove(character, DIRECTION[directionName])){
+      validMovemets.push({direction : DIRECTION[directionName], name : directionName});
     }
   }
   
@@ -47,7 +62,7 @@ function getValidMoves(character){
  * @param character - this is the character object.
  * this function is in charge of moving the soldier.
  */
-function moveSoldier(character){
+export function moveSoldier(character){
     
     const validMoves = getValidMoves(character);
     
@@ -56,24 +71,27 @@ function moveSoldier(character){
     
     const userInput = getUserInput();
 
-    if(checkIsBattle()){
-      //handle battle
-    }else{
+    // if(checkIsBattle()){
+    //   //handle battle
+    // }else{
       
       //in the case that it is not a battle.
-
-      const vector = validMove[userInput].direction;
+      
+      const vector = validMoves[userInput].direction;
       const prevPos = {row : character.location.x, col : character.location.y};
-      const curPos = {row : character.location.x + vector.row, col : character.location.y + vector.col}
+      const curPos = {row : character.location.x + vector[0], col : character.location.y + vector[1]}
 
-      updateBoard(character, prevPos, curPos);
-    }
+      updateBoard(character, curPos, prevPos);
+    // }
 }
 
 
-function seeWolking(board, soldjer) {
+export function seeWolking(board, soldjer) {
+  
+  console.log(soldjer.location.x, soldjer.location.y)
+
   for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i]; j++) {
+    for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === soldjer) {
         if (j > 0) {
           if (typeof board[i][j - 1] === 'object') {
