@@ -1,4 +1,5 @@
-import { createCharacter, createSoldjer } from "../character.js";
+import  createSoldjer from "../character.js";
+import { EMPTY_CELL } from "../consts.js";
 import board from "./board.js";
 
 
@@ -7,7 +8,7 @@ import board from "./board.js";
 //==========================================
 function createEmptyBoard(rows, cols) {
   //creates a empty board.
-  return Array(rows).fill(Array(cols).fill(EMPTY_CELL));
+  return Array(rows).fill(null).map(() => Array(cols).fill(EMPTY_CELL));
 }
 
 //==========================================
@@ -15,9 +16,10 @@ function createEmptyBoard(rows, cols) {
 //==========================================
 function fillBoard(pieces){
   //put the pieces into the matrix.
-  pieces.array.forEach(element => {
-    board[element.x][element.y] = element;
+  pieces.forEach(element => {
+    board[element.location.x][element.location.y] = element
   }); 
+
 
 }
 
