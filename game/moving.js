@@ -2,6 +2,8 @@ import { DIRECTION, MAX_COLS, MAX_ROWS } from ".././consts.js";
 import { getUserInput, printValidMoves } from ".././io.js";
 import { updateBoard } from "../board/boardFunctions.js";
 import board from "../board/board.js";
+import {checkIsBattle, compareCharacters, resoltComparison} from "../game/battle.js";
+
 
 /**
  * @character - this is the character object.
@@ -84,11 +86,13 @@ function moveSoldier(character) {
     col: character.location.y + vector[1],
   };
 
-  // if (checkIsBattle(board, newPos)) {
-  
-  // } else {
+  if (checkIsBattle(board, newPos)) {
+      const result = compareCharacters(character, board[newPos.row][newPos.col]);
+      resoltComparison(board, character, board[newPos.row][newPos.col], result);
+      return result;
+  } else {
     updateBoard(character, newPos, prevPos);
-  // }
+  }
 }
 
 function seeWolking(board, soldjer) {
