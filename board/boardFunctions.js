@@ -1,3 +1,5 @@
+import {EMPTY_CELL, MAX_ROWS, MAX_COLS} from ".././consts.js";
+
 //==========================================
 //              print Board
 //==========================================
@@ -7,7 +9,7 @@ function printBoard(board){
     str+="["
     for (let c of r){
        if (typeof c != 'object'){
-        str+="_"
+        str+=EMPTY_CELL;
        }else{
         if (c.player === "player"){
             str+="O"
