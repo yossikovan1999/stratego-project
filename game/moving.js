@@ -58,6 +58,11 @@ function getValidMoves(character){
 
 }
 
+function checkIsBattle(old,new){
+     
+}
+
+
 /**
  * @param character - this is the character object.
  * this function is in charge of moving the soldier.
@@ -65,10 +70,10 @@ function getValidMoves(character){
 export function moveSoldier(character){
     
     const validMoves = getValidMoves(character);
-    
+
     //this will print the valid available moves.
     printValidMoves(validMoves);
-    
+
     const userInput = getUserInput();
 
     // if(checkIsBattle()){
@@ -116,10 +121,13 @@ export function seeWolking(board, soldjer) {
           } else {
             console.log("in the down is avlable");
 
-          }
-      }
+                    }
+                }
+            }
+        }
     }
-  }
 
-}
 
+
+
+export { seeWolking, moveSoldier }
