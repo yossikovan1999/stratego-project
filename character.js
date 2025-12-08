@@ -35,5 +35,5 @@ function compareCharacters(attacker, attacked){
   }
 }
 
-
+export {createSoldier,compareCharacters}
 
