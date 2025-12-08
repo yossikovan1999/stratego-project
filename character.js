@@ -1,9 +1,15 @@
-export function createCharacter(type,rank){
-    return{
-     rank:rank,
-     type:type,
-     location:{x:undefined,y:undefined}
-    }
+import readLineSync from "readline-sync";
+
+function create_soldjer(type, rank, player) {
+  return {
+    player: player,
+    rank: rank,
+    type: type,
+    location: { x: undefined, y: undefined },
+  };
 }
 
-console.log(create_soldjer("S",5));
+function seeWolking(board, soldjer) {}
+
+let t = readLineSync.question();
+console.log(t);
