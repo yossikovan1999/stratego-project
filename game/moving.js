@@ -104,3 +104,4 @@ function seeWolking(board, soldjer) {
   }
 
 }
+
