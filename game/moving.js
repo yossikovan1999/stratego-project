@@ -34,7 +34,7 @@ function validMove(character, move) {
   if(typeof board[character.location.x + move[0]][character.location.y + move[1]] === "object"){
 
     const moveToObject = board[character.location.x + move[0]][character.location.y + move[1]];
-    return moveToObject.player !== character.player;
+    return moveToObject.player !== character.player
   }
 
   //move is valid.
@@ -99,7 +99,7 @@ function seeWolking(board, soldjer) {
   
 
   for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
+    for (let j = 0; j < board[i].length; j++) { 
       if (board[i][j] === soldjer) {
         if (j > 0) {
           if (typeof board[i][j - 1] === 'object') {
