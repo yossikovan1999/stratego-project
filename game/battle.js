@@ -14,43 +14,46 @@ function compareCharacters(attacker, attacked) {
     } else if (attacker.rank === 1 && attacked.rank === 9) {
         return "ATTACKER_WON";
     } else if (attacker.rank < attacked.rank) {
-        return "ATTACKER_WON";
-    } else if (attacker.rank > attacked.rank) {
         return "ATTACKED_WON";
+    } else if (attacker.rank > attacked.rank) {
+        return "ATTACKER_WON";
     } else {
         return "TIE";
     }
 }
 function resoltComparison(board, attacker, attacked, resolt) {
     if (resolt === "GAME_OVER") {
-        let tmp = [attacker.x, attacker.y]
-        attacker.x = attacked.x
-        attacker.y = attacked.y
-        board[attacked.x][attacked.y] = attacker
+        let tmp = [attacker.location.x, attacker.location.y]
+        attacker.location.x = attacked.location.x
+        attacker.location.y = attacked.location.y
+        board[attacked.location.x][attacked.location.y] = attacker
         board[tmp[0]][tmp[1]] = "_"
         console.log(resolt)
     } else {
         if (resolt === "ATTACKER_WON") {
-            let tmp = [attacker.x, attacker.y]
-            attacker.x = attacked.x
-            attacker.y = attacked.y
-            board[attacked.x][attacked.y] = attacker
+            let tmp = [attacker.location.x, attacker.location.y]
+            attacker.location.x = attacked.location.x
+            attacker.location.y = attacked.location.y
+            board[attacked.location.x][attacked.location.y] = attacker
             board[tmp[0]][tmp[1]] = "_"
             console.log(resolt);
         } else if (resolt === "ATTACKED_WON") {
-            board[attacker.x][attacker.y] = "_"
+            board[attacker.location.x][attacker.location.y] = "_"
             console.log(resolt);
         } else if (resolt === "TIE") {
-            board[attacked.x][attacked.y] = "_"
-            board[attacker.x][attacker.y] = "_"
+            board[attacked.location.x][attacked.location.y] = "_"
+            board[attacker.location.x][attacker.location.y] = "_"
+            console.log(resolt);
         }
     }
 }
 
 
 function checkIsBattle(board,newPos){
-    
-    return false
+    if (typeof board[newPos.row][newPos.col] === 'object'){
+    return true
+}
+return false
 }
 
 export {compareCharacters,resoltComparison,checkIsBattle}

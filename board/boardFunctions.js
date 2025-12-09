@@ -8,25 +8,24 @@ import board from "./board.js";
 import createSoldier from "../character.js";
 
 function printBoard(board) {
-  let str = "";
-  for (let r of board) {
-    str += "[";
-    for (let c of r) {
-      if (typeof c != "object") {
-        str += EMPTY_CELL;
-      } else {
-        if (c.player === "player") {
-          str += "O";
-        } else {
-          str += "X";
+  const list = []
+  for (let r of board){
+    let list1 = []
+    for (let c of r){
+      if (typeof c === 'object'){
+        if (c.player === "player"){
+          list1.push("O")
+        }else{
+          list1.push("X")
         }
+      }else{
+        list1.push("_")
       }
-      str += " ";
+      
     }
-    str = str.slice(0, str.length - 1);
-    str += "]\n";
+    list.push(list1)
   }
-  return str;
+  console.table(list)
 }
 
 /**

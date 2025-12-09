@@ -102,7 +102,7 @@ function moveSoldier(character) {
 
 function seeWolking(board, soldjer) {
   for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
+    for (let j = 0; j < board[i].length; j++) { 
       if (board[i][j] === soldjer) {
         if (j > 0) {
           if (typeof board[i][j - 1] === "object") {
@@ -128,12 +128,13 @@ function seeWolking(board, soldjer) {
           } else {
             console.log("in the up is avlable");
           }
-        }
+        }if (i<board.length-1){
         if (typeof board[i + 1][j] === "object") {
           console.log(`in the dwon have soldjer of ${board[i + 1][j].player}`);
         } else {
           console.log("in the down is avlable");
         }
+    }
       }
     }
   }
