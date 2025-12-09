@@ -11,8 +11,11 @@ function createSoldiersplayer2(board) {
     soldiers.forEach((s)=>{
         while (true){
           console.log(`type ${s.type} rank ${s.rank}`)
-          let row = readLineSync.question("wich row 0-3: ")
-          let col = readLineSync.question("wich col: ")
+          //let row = readLineSync.question("wich row 0-3: ")
+          //let col = readLineSync.question("wich col: ")
+
+          let row = Math.floor(Math.random() * 4);
+          let col = Math.floor(Math.random() * 10);
        
           if (row != 0 && row != 1 && row != 2 && row != 3 || typeof board[row][col] === 'object'){
             continue
