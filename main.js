@@ -1,5 +1,5 @@
 import board from "./board/board.js";
-import {printBoard, createSoldiers} from "./board/boardFunctions.js";
+import { printBoard, createSoldiers } from "./board/boardFunctions.js";
 import { fillBoard } from "./board/initBoard.js";
 import createSoldier  from "./character.js";
 import {seeWolking, moveHuman} from "./game/moving.js"

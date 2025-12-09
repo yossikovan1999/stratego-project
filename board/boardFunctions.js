@@ -50,7 +50,6 @@ function getRandomCol(row) {
 function createSoldiers(row, player) {
   for (const number of CHARACTER_NUMBERS) {
     if (player != "computer") {
-      console.log(number);
     }
 
     const soldierType = number === 0 ? "F" : "S";

@@ -24,15 +24,15 @@ function game() {
             console.log("you won by by");
             break
         }
-        let breakgame = false
+        let breakGame = false
         for (let r of board) {
             for (let c of r) {
                 if (typeof c === 'object' && c.player === "player") {
-                    breakgame = true
+                    breakGame = true
                 }
             }
         }
-        if (breakgame === false) {
+        if (breakGame === false) {
             console.log("you lost by by");
             break
         }
