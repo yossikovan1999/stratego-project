@@ -1,12 +1,10 @@
-import { DIRECTION, MAX_COLS, MAX_ROWS } from ".././consts.js";
+import { DIRECTION, MAX_COLS, MAX_ROWS, EMPTY_CELL } from ".././consts.js";
 import { getUserInput, printValidMoves } from ".././io.js";
 import { updateBoard } from "../board/boardFunctions.js";
 import board from "../board/board.js";
-import {
-  checkIsBattle,
-  compareCharacters,
-  resoltComparison,
-} from "../game/battle.js";
+import {checkIsBattle, compareCharacters, resoltComparison} from "../game/battle.js";
+
+
 
 /**
  * @character - this is the character object.
@@ -68,20 +66,51 @@ function getValidMoves(character) {
   return validMovemets;
 }
 
+
+/**
+ * this function will return a soldier and the valid moves
+ * @returns - object.
+ */
+function chooseRandomPiece(){
+  
+  let found = false;
+  
+  //run while a valid piece was not found.
+  while(!found){
+    
+    const row = Math.floor(Math.random() * MAX_ROWS);
+    const col = Math.floor(Math.random() * MAX_COLS);
+    const piece = board[row][col];
+    
+    //make sure that the current piece is a object.
+    if (typeof piece !== "object"){
+        continue;
+    }
+    
+    /*continue if the current piece is a object and the piece is a 
+    player piece or the type is a flag.*/
+    if (typeof piece === "object" && (piece.player === "player" || piece.type === "F")){
+        continue;
+    }
+    
+    //get all valid movement the piece can make
+    const validMoves = getValidMoves(piece); 
+    
+    //if there are valid moves return.
+    if(validMoves.length > 0){
+      return {soldier : piece, validMoves : validMoves};
+    }
+  }
+}
+
 /**
  * @param {*} character - this is the character object.
  * this function is in charge of moving the soldier.
  */
-function moveSoldier(character) {
-  const validMoves = getValidMoves(character);
-
-  //this will print the valid available moves.
-  printValidMoves(validMoves);
-
-  const userInput = getUserInput();
-
+function moveSoldier(character, validMoves, index) {
+  
   //this is the moving vector (values where to move).
-  const vector = validMoves[userInput].direction;
+  const vector = validMoves[index].direction;
   //this is the previous position
   const prevPos = { row: character.location.x, col: character.location.y };
   //this is the new position
@@ -90,7 +119,6 @@ function moveSoldier(character) {
     col: character.location.y + vector[1],
   };
   
-
   if (checkIsBattle(board, newPos)) {
     const result = compareCharacters(character, board[newPos.row][newPos.col]);
     resoltComparison(board, character, board[newPos.row][newPos.col], result);
@@ -100,6 +128,42 @@ function moveSoldier(character) {
   }
 }
 
+/**
+ * this function is in charge of moving the computer.
+ */
+function moveComputer(){
+  
+  const {soldier, validMoves} = chooseRandomPiece();
+  
+  const randomIndex = Math.floor(Math.random() * validMoves.length);
+
+  return moveSoldier(soldier, validMoves, randomIndex);
+  
+}
+
+/**
+ * this function is in charge of taking care of moving a human piece.
+ * @param {} character 
+ */
+function moveHuman(character){
+
+  const validMoves = getValidMoves(character);
+
+  //this will print the valid available moves.
+  printValidMoves(validMoves);
+  
+  const userInput = getUserInput();
+
+  return moveSoldier(character, validMoves, userInput);
+
+}
+
+
+/**
+ * this function will print the options the palyer can move to.
+ * @param {*} board - the gamr board.
+ * @param {*} soldjer - soldier object.
+ */
 function seeWolking(board, soldjer) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) { 
@@ -140,4 +204,4 @@ function seeWolking(board, soldjer) {
   }
 }
 
-export { seeWolking, moveSoldier };
+export { seeWolking, moveSoldier, moveHuman, moveComputer };

@@ -2,7 +2,7 @@ import board from "./board/board.js";
 import {printBoard, createSoldiers} from "./board/boardFunctions.js";
 import { fillBoard } from "./board/initBoard.js";
 import createSoldier  from "./character.js";
-import {seeWolking,moveSoldier} from "./game/moving.js"
+import {seeWolking, moveHuman} from "./game/moving.js"
 function game(){
     const soldier = createSoldier("S",Math.floor(Math.random()*9)+1,"player",9,Math.floor(Math.random()*10))
     createSoldiers(0,"AI")
@@ -10,7 +10,7 @@ function game(){
     console.log( printBoard(board));
     while (true){
     seeWolking(board,soldier)
-    const result = moveSoldier(soldier)
+    const result = moveHuman(soldier)
     console.log(printBoard(board));
      if (result === "GAME_OVER"){
         console.log("you won by by");
